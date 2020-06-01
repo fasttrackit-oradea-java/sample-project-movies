@@ -9,6 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <script src="/movies.js"></script>
 </head>
 <body>
 <div class="container">
@@ -44,9 +45,13 @@
             </td>
             <td data-th-text="${movie.year}"></td>
             <td data-th-text="${movie.rating}"></td>
-            <td><i class="fas fa-trash-alt"></i></td>
+            <td>
+                <div data-th-id="${movie.id}" style="cursor: pointer">
+                    <i class="fas fa-edit mr-2" data-target="#addMovieModal" data-toggle="modal"></i>
+                    <i class="fas fa-trash-alt"></i>
+                </div>
+            </td>
         </tr>
-
         </tbody>
     </table>
 </div>
@@ -101,18 +106,20 @@
                     <label for="modal-movie-title">Title</label>
                     <input type="text" id="modal-movie-title" class="form-control"/>
                 </div>
-                <div class="form-group">
-                    <label for="modal-movie-year">Year</label>
-                    <input type="number" id="modal-movie-year" class="form-control" min="1800" max="2100"/>
-                </div>
-                <div class="form-group">
-                    <label for="modal-movie-rating">Rating</label>
-                    <input type="number" id="modal-movie-rating" class="form-control" min="1" max="10">
+                <div class="d-flex">
+                    <div class="form-group mr-3">
+                        <label for="modal-movie-year">Year</label>
+                        <input class="form-control" id="modal-movie-year" max="2100" min="1800" type="number"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="modal-movie-rating">Rating</label>
+                        <input class="form-control" id="modal-movie-rating" max="10" min="1" type="number">
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save</button>
+                <button class="btn btn-primary" id="modal-save-button" type="button">Save</button>
             </div>
         </div>
     </div>
