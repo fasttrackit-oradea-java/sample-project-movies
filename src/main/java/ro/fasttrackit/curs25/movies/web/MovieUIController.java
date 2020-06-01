@@ -17,6 +17,11 @@ public class MovieUIController {
         this.movieService = movieService;
     }
 
+    @GetMapping
+    public String rootPage() {
+        return "redirect:/movies";
+    }
+
     @GetMapping("movies")
     public String moviesPage(Model pageModel) {
         pageModel.addAttribute("movies", movieService.getAll());
